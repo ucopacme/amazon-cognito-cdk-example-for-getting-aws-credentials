@@ -25,6 +25,8 @@ The following resources are defined:
 * **Amazon Cognito User Pools**: [Amazon Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) *lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily. Amazon Cognito scales to millions of users and supports sign-in with social identity providers, such as Facebook, Google, and Amazon, and enterprise identity providers via SAML 2.0.* 
 
     In our case, we needed to support 11 different SAML IdPs. Cognito allowed us to add all the SAML IdPs to our Cognito User Pool for **authentication**.  When a user successfully logs into Cognito for the first time using their SAML credentials, Cognito automatically creates a new Cognito account associated with the SAML account. This allowed us to consolidate all IdPs into one **authentication provider**. 
+    
+    *Note from Eric G:* UCOP runs an Identity Provider (IdP) Proxy. Given the way that Cognito expects to receive attributes from campus IdPs, I expect to recommend that any Cognito SP integrations (especially multi-campus ones) go through the IdP Proxy to ensure that locations see a "vanilla" UCTrust SAML SP and not a "Custom AWS" one.  
  
 * **Amazon Cognito Identity Pools**: [Amazon Cognito Identity  Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html)  *(federated identities) enable you to create unique identities for your users and federate them with identity providers. With an identity pool, you can obtain temporary, limited-privilege AWS credentials to access other AWS services.* 
 
