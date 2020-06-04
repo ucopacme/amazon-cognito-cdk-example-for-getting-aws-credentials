@@ -11,7 +11,7 @@
 !ui-react/src/components/**/*.js
 !ui-react/src/config/appConfig.js
 !ui-react/src/config/config.js
-env.sh
+#env.sh
 # CDK asset staging directory
 .cdk.staging
 cdk.out
