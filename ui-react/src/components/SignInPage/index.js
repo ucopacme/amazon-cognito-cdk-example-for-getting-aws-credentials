@@ -16,7 +16,7 @@ export const SignInPage = () => (
         style={{ position: "absolute", top: "-26px" }}
       />
       <Segment stacked>
-        <Header as="h2">
+        <Header as="h2">Image:
           <Image src="athena.svg" /> {config.SignInHeader}
         </Header>
         <Button
