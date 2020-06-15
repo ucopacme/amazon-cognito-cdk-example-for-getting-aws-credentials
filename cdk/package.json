@@ -16,12 +16,13 @@
     "tsc": "tsc",
     "build": "tsc -b",
     "watch": "tsc -w",
-    "clean": "tsc -b --clean",
+    "clean": "tsc -b --clean npm run format && npm run build",
     "cdk": "cdk",
     "cdk-synth": "cdk synth",
     "cdk-diff": "cdk diff || true",
     "cdk-deploy": "cdk deploy",
     "cdk-bootstrap": "cdk bootstrap",
+    "config": "jsonlint config.json",
     "generate-config": "ts-node ./lib/generateConfig.ts"
   },
   "devDependencies": {
@@ -33,6 +34,7 @@
     "dotenv": "^8.2.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.658.0",
     "@aws-cdk/aws-apigateway": "^1.33.1",
     "@aws-cdk/aws-cloudfront": "^1.33.1",
     "@aws-cdk/aws-cognito": "^1.33.1",
@@ -42,7 +44,8 @@
     "@aws-cdk/aws-sns": "^1.33.1",
     "@aws-cdk/aws-sns-subscriptions": "^1.33.1",
     "@aws-cdk/core": "^1.33.1",
-    "aws-sdk": "^2.658.0",
-    "source-map-support": "^0.5.17"
+    "jsonlint": "",
+    "source-map-support": "^0.5.17",
+    "@ucop-acme/aws-infra": "^0.1.33"
   }
 }
