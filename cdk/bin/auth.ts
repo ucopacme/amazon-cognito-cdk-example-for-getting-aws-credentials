@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
+import "source-map-support/register";
+import * as cdk from "@aws-cdk/core";
 import infra = require("@ucop-acme/aws-infra");
 import config from "../config.json";
-import { Auth } from '../lib/auth';
+import { Auth } from "../lib/auth";
 
 const codebuildUrl: string = process.env.CODEBUILD_BUILD_URL || "manual";
 

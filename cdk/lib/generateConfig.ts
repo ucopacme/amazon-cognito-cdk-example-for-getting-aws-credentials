@@ -2,7 +2,6 @@ import { Utils } from "./utils";
 import fs = require("fs");
 require("dotenv").config();
 
-
 const stack_region = Utils.getEnv("STACK_REGION", "us-west-2");
 const stack_name = Utils.getEnv("STACK_NAME", "");
 
@@ -10,7 +9,7 @@ class GenerateConfig {
   async generateConfig(
     stackName: string,
     stackRegion: string,
-    filePath: string
+    filePath: string,
   ) {
     const outputs = await Utils.getStackOutputs(stackName, stackRegion);
     const outputsByName = new Map<string, string>();
@@ -20,7 +19,7 @@ class GenerateConfig {
 
     const region = outputsByName.get(`${stackName}-RegionOutput`);
     const cognitoDomainPrefix = outputsByName.get(
-      `${stackName}-CognitoDomainOutput`
+      `${stackName}-CognitoDomainOutput`,
     );
     const identityPoolId = outputsByName.get(`${stackName}-IdentityPoolOutput`);
     const userPoolId = outputsByName.get(`${stackName}-UserPoolIdOutput`);
@@ -63,12 +62,6 @@ if (!stackName) {
 const filePath = process.argv[4];
 if (!stackName) {
   throw new Error("file path is required");
-
 }
 
-
-new GenerateConfig().generateConfig(
-  stack_name,
-  stack_region, 
-  filePath
-);
+new GenerateConfig().generateConfig(stack_name, stack_region, filePath);

@@ -6,7 +6,7 @@ import { URL } from "url";
 export class Utils {
   static async getStackOutputs(
     stackName: string,
-    stackRegion: string
+    stackRegion: string,
   ): Promise<CloudFormation.Output[]> {
     aws.config.region = stackRegion;
     const cfn = new aws.CloudFormation();
@@ -29,7 +29,7 @@ export class Utils {
     apiResource: apigateway.IResource,
     origin: string,
     allowCredentials: boolean = false,
-    allowMethods: string = "OPTIONS,GET,POST"
+    allowMethods: string = "OPTIONS,GET,POST",
     //PUT,DELETE
   ) {
     apiResource.addMethod(
@@ -69,7 +69,7 @@ export class Utils {
             },
           },
         ],
-      }
+      },
     );
   }
 
@@ -93,14 +93,7 @@ export class Utils {
     });
   }
 
-  static getStackName(stackpath:string){
-      return stackpath.substr(0, stackpath.indexOf('/'))
-     
-    }
-   
-    
+  static getStackName(stackpath: string) {
+    return stackpath.substr(0, stackpath.indexOf("/"));
   }
-
-
-
-
+}

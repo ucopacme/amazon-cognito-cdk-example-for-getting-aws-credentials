@@ -1,24 +1,24 @@
 // modified and extended (https://github.com/aws-samples/amazon-cognito-example-for-external-idp)
 
 import apigateway = require("@aws-cdk/aws-apigateway");
-import cdk = require("@aws-cdk/core");
-import lambda = require("@aws-cdk/aws-lambda");
-import cognito = require("@aws-cdk/aws-cognito");
-import sns = require("@aws-cdk/aws-sns");
-import iam = require("@aws-cdk/aws-iam");
-import s3 = require("@aws-cdk/aws-s3");
-import cloudfront = require("@aws-cdk/aws-cloudfront");
-import "source-map-support/register";
 import { AuthorizationType } from "@aws-cdk/aws-apigateway";
-import { CfnUserPoolClient, UserPool } from "@aws-cdk/aws-cognito";
-import { Utils } from "./utils";
-import { Runtime } from "@aws-cdk/aws-lambda";
-import { URL } from "url";
-import { Duration } from "@aws-cdk/core";
-import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
+import cloudfront = require("@aws-cdk/aws-cloudfront");
 import { CloudFrontWebDistribution } from "@aws-cdk/aws-cloudfront";
+import cognito = require("@aws-cdk/aws-cognito");
+import { CfnUserPoolClient, UserPool } from "@aws-cdk/aws-cognito";
+import iam = require("@aws-cdk/aws-iam");
 import { Effect } from "@aws-cdk/aws-iam";
+import lambda = require("@aws-cdk/aws-lambda");
+import { Runtime } from "@aws-cdk/aws-lambda";
+import s3 = require("@aws-cdk/aws-s3");
+import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
+import sns = require("@aws-cdk/aws-sns");
 import subscriptions = require("@aws-cdk/aws-sns-subscriptions");
+import cdk = require("@aws-cdk/core");
+import { Duration } from "@aws-cdk/core";
+import { Utils } from "./utils";
+import "source-map-support/register";
+import { URL } from "url";
 
 export class CognitoService extends cdk.Construct {
   constructor(scope: cdk.Stack, id: string) {
@@ -29,7 +29,7 @@ export class CognitoService extends cdk.Construct {
     // ========================================================================
     const NewUserSNSSubscription = Utils.getEnv(
       "NEW_USER_SNS_SUBSCRIPTION",
-      ""
+      "",
     );
     const project_name = Utils.getEnv("PROJECT_NAME", "");
     const support_group_name = Utils.getEnv("SUPPORT_GROUP_NAME", "");
@@ -76,7 +76,7 @@ export class CognitoService extends cdk.Construct {
     //
     if (NewUserSNSSubscription !== "") {
       NewUserSNSTopic.addSubscription(
-        new subscriptions.EmailSubscription(NewUserSNSSubscription)
+        new subscriptions.EmailSubscription(NewUserSNSSubscription),
       );
     }
 
@@ -84,7 +84,7 @@ export class CognitoService extends cdk.Construct {
       runtime: nodeRuntime,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
-        "../lambda/NewUserSNS/Cognito_New_User_SNS.zip"
+        "../lambda/NewUserSNS/Cognito_New_User_SNS.zip",
       ),
       timeout: Duration.seconds(5),
       memorySize: 128,
@@ -97,14 +97,14 @@ export class CognitoService extends cdk.Construct {
       new iam.PolicyStatement({
         resources: [NewUserSNSTopic.topicArn],
         actions: ["sns:Publish"],
-      })
+      }),
     );
     // ========================================================================
     // create the Cognito User Pool
     // ========================================================================
 
     //user supportedIdentityProviders if a Federated IdP is already setup in Cognito
-    
+
     const userPool = new UserPool(this, "CogUP", {
       signInAliases: { email: true },
 
@@ -113,7 +113,7 @@ export class CognitoService extends cdk.Construct {
 
     // Setup the default UserPoolClient for the UserPool
     const userPoolClient = new CfnUserPoolClient(this, "CogAppClient", {
-       supportedIdentityProviders: [],
+      supportedIdentityProviders: [],
       allowedOAuthFlowsUserPoolClient: true,
       allowedOAuthFlows: ["code"],
       allowedOAuthScopes: ["phone", "email", "openid", "profile"],
@@ -137,7 +137,7 @@ export class CognitoService extends cdk.Construct {
       runtime: nodeRuntime,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
-        "../lambda/ListGrps/Cognito_List_Users_In_Grps.zip"
+        "../lambda/ListGrps/Cognito_List_Users_In_Grps.zip",
       ),
       timeout: Duration.seconds(5),
       memorySize: 128,
@@ -152,7 +152,7 @@ export class CognitoService extends cdk.Construct {
       runtime: nodeRuntime,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
-        "../lambda/SetupMessage/Cognito_Setup_Message.zip"
+        "../lambda/SetupMessage/Cognito_Setup_Message.zip",
       ),
       timeout: Duration.seconds(5),
       memorySize: 128,
@@ -169,7 +169,7 @@ export class CognitoService extends cdk.Construct {
       runtime: nodeRuntime,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
-        "../lambda/SignIn/Cognito_Console_Signin.zip"
+        "../lambda/SignIn/Cognito_Console_Signin.zip",
       ),
       timeout: Duration.seconds(5),
       memorySize: 128,
@@ -185,7 +185,7 @@ export class CognitoService extends cdk.Construct {
           "cognito-idp:ListUsers",
           "cognito-idp:AdminListGroupsForUser",
         ],
-      })
+      }),
     );
 
     // ========================================================================
@@ -225,7 +225,7 @@ export class CognitoService extends cdk.Construct {
         restApi: api,
         requestValidatorName: "ValidateQuery-Headers",
         validateRequestParameters: true,
-      }
+      },
     );
 
     // ------------------------------------------------------------------------
@@ -237,21 +237,21 @@ export class CognitoService extends cdk.Construct {
       apiListGrpsFunction,
       {
         proxy: true,
-      }
+      },
     );
 
     const SignInintegration = new apigateway.LambdaIntegration(
       apiSignInFunction,
       {
         proxy: true,
-      }
+      },
     );
 
     const SetupMessageintegration = new apigateway.LambdaIntegration(
       apiSetupMessageFunction,
       {
         proxy: true,
-      }
+      },
     );
 
     // ------------------------------------------------------------------------
@@ -270,7 +270,7 @@ export class CognitoService extends cdk.Construct {
         authorizer: { authorizerId: cfnAuthorizer.ref },
         authorizationType: AuthorizationType.COGNITO,
         requestValidator: reqValidator,
-      }
+      },
     );
 
     const SignInmethod = SignInproxyResource.addMethod(
@@ -280,7 +280,7 @@ export class CognitoService extends cdk.Construct {
         authorizer: { authorizerId: cfnAuthorizer.ref },
         authorizationType: AuthorizationType.COGNITO,
         requestValidator: reqValidator,
-      }
+      },
     );
 
     const SetupMessagemethod = SetupMessageproxyResource.addMethod(
@@ -290,7 +290,7 @@ export class CognitoService extends cdk.Construct {
         authorizer: { authorizerId: cfnAuthorizer.ref },
         authorizationType: AuthorizationType.COGNITO,
         requestValidator: reqValidator,
-      }
+      },
     );
     // ------------------------------------------------------------------------
     // Add CORS support to all
@@ -330,9 +330,9 @@ export class CognitoService extends cdk.Construct {
               "cognito-identity.amazonaws.com:amr": "unauthenticated",
             },
           },
-          "sts:AssumeRoleWithWebIdentity"
+          "sts:AssumeRoleWithWebIdentity",
         ),
-      }
+      },
     );
 
     unauthenticatedRole.addToPolicy(
@@ -340,7 +340,7 @@ export class CognitoService extends cdk.Construct {
         effect: Effect.ALLOW,
         actions: ["mobileanalytics:PutEvents", "cognito-sync:*"],
         resources: ["*"],
-      })
+      }),
     );
 
     const authenticatedRole = new iam.Role(
@@ -357,9 +357,9 @@ export class CognitoService extends cdk.Construct {
               "cognito-identity.amazonaws.com:amr": "authenticated",
             },
           },
-          "sts:AssumeRoleWithWebIdentity"
+          "sts:AssumeRoleWithWebIdentity",
         ),
-      }
+      },
     );
     authenticatedRole.addToPolicy(
       new iam.PolicyStatement({
@@ -370,7 +370,7 @@ export class CognitoService extends cdk.Construct {
           "cognito-identity:*",
         ],
         resources: ["*"],
-      })
+      }),
     );
 
     const TestGrp1Role = new iam.Role(this, "TestGrp1Role", {
@@ -384,7 +384,7 @@ export class CognitoService extends cdk.Construct {
             "cognito-identity.amazonaws.com:amr": "authenticated",
           },
         },
-        "sts:AssumeRoleWithWebIdentity"
+        "sts:AssumeRoleWithWebIdentity",
       ),
       description: "This is description for TestGrp1.",
       //==========================================================================================
@@ -402,7 +402,7 @@ export class CognitoService extends cdk.Construct {
           "cognito-identity:*",
         ],
         resources: ["*"],
-      })
+      }),
     );
 
     const TestGrp2Role = new iam.Role(this, "TestGrp2Role", {
@@ -416,7 +416,7 @@ export class CognitoService extends cdk.Construct {
             "cognito-identity.amazonaws.com:amr": "authenticated",
           },
         },
-        "sts:AssumeRoleWithWebIdentity"
+        "sts:AssumeRoleWithWebIdentity",
       ),
       description: "This is description for TestGrp1.",
     });
@@ -429,7 +429,7 @@ export class CognitoService extends cdk.Construct {
           "cognito-identity:*",
         ],
         resources: ["*"],
-      })
+      }),
     );
 
     const defaultPolicy = new cognito.CfnIdentityPoolRoleAttachment(
@@ -454,7 +454,7 @@ export class CognitoService extends cdk.Construct {
             ambiguousRoleResolution: "AuthenticatedRole",
           },
         },
-      }
+      },
     );
 
     // ========================================================================
@@ -553,7 +553,7 @@ export class CognitoService extends cdk.Construct {
   }
 
   private createCloudFrontDistribution(
-    uiBucket: Bucket
+    uiBucket: Bucket,
   ): CloudFrontWebDistribution {
     const cloudFrontOia = new cloudfront.OriginAccessIdentity(this, "OIA", {
       comment: `OIA for ${uiBucket.bucketName}`,
@@ -573,7 +573,7 @@ export class CognitoService extends cdk.Construct {
             behaviors: [{ isDefaultBehavior: true }],
           },
         ],
-      }
+      },
     );
 
     // grant read permissions to CloudFront
@@ -583,10 +583,10 @@ export class CognitoService extends cdk.Construct {
         resources: [uiBucket.bucketArn, uiBucket.bucketArn + "/*"],
         principals: [
           new iam.CanonicalUserPrincipal(
-            cloudFrontOia.cloudFrontOriginAccessIdentityS3CanonicalUserId
+            cloudFrontOia.cloudFrontOriginAccessIdentityS3CanonicalUserId,
           ),
         ],
-      })
+      }),
     );
     return distribution;
   }

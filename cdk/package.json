@@ -16,13 +16,14 @@
     "tsc": "tsc",
     "build": "tsc -b",
     "watch": "tsc -w",
-    "clean": "tsc -b --clean npm run format && npm run build",
+    "clean": "tsc -b --clean && find bin lib -name '*.js' -type f -delete && find bin lib -name '*.d.ts' -type f -delete && npm run format && npm run build",
     "cdk": "cdk",
     "cdk-synth": "cdk synth",
     "cdk-diff": "cdk diff || true",
     "cdk-deploy": "cdk deploy",
     "cdk-bootstrap": "cdk bootstrap",
     "config": "jsonlint config.json",
+    "format": "find bin lib test -name '*ts' -print0 | xargs -0  prettier --trailing-comma all --write",
     "generate-config": "ts-node ./lib/generateConfig.ts"
   },
   "devDependencies": {
