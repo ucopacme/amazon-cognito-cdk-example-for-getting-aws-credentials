@@ -8,7 +8,7 @@ export AWS_SDK_LOAD_CONFIG=1 # allows the SDK to load from config. see https://g
 ## 1. the CloudFormation stack name, e.g. "MyAppName"
 ## ====================================================================================================================
 # secure client architecture module
-export STACK_NAME="CdkcogStack"
+export STACK_NAME="sdapDevAuth"
 
 ## ====================================================================================================================
 ## 2. explicitly define the account you intend to deploy into
@@ -23,7 +23,7 @@ export STACK_REGION="us-west-2"
 ## ====================================================================================================================
 ## 3. Unique Domain name for Cognito must have a value
 ## ====================================================================================================================
-export COGNITO_DOMAIN_NAME=ucop-scam-dev
+export COGNITO_DOMAIN_NAME=sdap-dev-auth
 
 ## ====================================================================================================================
 ## 4. set this to use http://localhost:3000. Leave blank to use CloudFront
