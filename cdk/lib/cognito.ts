@@ -113,15 +113,19 @@ export class CognitoService extends cdk.Construct {
 
     // Setup the default UserPoolClient for the UserPool
     const userPoolClient = new CfnUserPoolClient(this, "CogAppClient", {
-      supportedIdentityProviders: [],
-      allowedOAuthFlowsUserPoolClient: true,
       allowedOAuthFlows: ["code"],
+      allowedOAuthFlowsUserPoolClient: true,
       allowedOAuthScopes: ["phone", "email", "openid", "profile"],
-      generateSecret: false,
-      refreshTokenValidity: 1,
       callbackUrLs: [appUrl],
+      clientName: "sdap-dev-auth-saml",
+      explicitAuthFlows: [],
+      generateSecret: false,
       logoutUrLs: [appUrl],
+      readAttributes: [],
+      refreshTokenValidity: 1,
+      supportedIdentityProviders: [],
       userPoolId: userPool.userPoolId,
+      writeAttributes: [],
     });
 
     const UserPoolDomain = new cognito.CfnUserPoolDomain(this, "CogDom", {
