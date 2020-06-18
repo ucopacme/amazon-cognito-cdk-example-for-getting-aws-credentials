@@ -17,6 +17,7 @@ import subscriptions = require("@aws-cdk/aws-sns-subscriptions");
 import cdk = require("@aws-cdk/core");
 import { Duration } from "@aws-cdk/core";
 import { Utils } from "./utils";
+import config from "../config.json";
 import "source-map-support/register";
 import { URL } from "url";
 
@@ -481,6 +482,14 @@ export class CognitoService extends cdk.Construct {
       roleArn: TestGrp2Role.roleArn,
       precedence: 10,
       description: "This is Test Grp 2",
+    });
+
+    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst1", {
+      groupName: "SdapDevAnalyst1",
+      userPoolId: userPool.userPoolId,
+      roleArn: config.roles.sdapdevanalyst1,
+      precedence: 10,
+      description: "This is Student Data Analytics Dev Role 1",
     });
 
     // ========================================================================

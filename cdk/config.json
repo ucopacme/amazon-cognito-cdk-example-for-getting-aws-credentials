@@ -43,6 +43,12 @@
     }
   ],
   "region": "us-west-2",
+  "roles" :
+  {
+      "sdapdevanalyst1": "arn:aws:iam::465872772557:role/sdapDevLevel1LocalAnalystWebRole",
+      "sdapdevanalyst2": "arn:aws:iam::465872772557:role/sdapDevLevel2LocalAnalystWebRole",
+      "sdapdevanalyst3": "arn:aws:iam::465872772557:role/sdapDevLevel3LocalAnalystWebRole"
+  },
   "stacks": {
     "auth": {
       "accountAlias": "bigdata",
