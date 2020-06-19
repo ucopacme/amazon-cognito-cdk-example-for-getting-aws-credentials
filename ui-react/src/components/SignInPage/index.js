@@ -12,12 +12,12 @@ export const SignInPage = () => (
     <Grid.Column style={{ maxWidth: 450 }} textAlign="left">
       <Image
         size="small"
-        src="logo.png"
+        src="sdap-lock.png"
         style={{ position: "absolute", top: "-26px" }}
       />
       <Segment stacked>
         <Header as="h2">
-          <Image src="athena.svg" /> {config.SignInHeader}
+          <Image src="uc.png" /> {config.SignInHeader}
         </Header>
         <Button
           fluid

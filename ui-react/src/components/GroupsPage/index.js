@@ -32,7 +32,7 @@ export function GroupsPage({ handleSignOut }) {
     <React.Fragment>
       <Menu size="large" inverted fixed="top">
         <Menu.Item header>
-          <img src="athena.svg" alt="Athena" style={{ marginRight: "16px" }} />{" "}
+          <img src="uc.png" alt="UC-Logo" style={{ marginRight: "16px" }} />{" "}
           {config.GroupPageHeader}
         </Menu.Item>
         <Menu.Menu position="right">
