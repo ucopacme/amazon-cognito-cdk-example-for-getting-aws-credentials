@@ -489,7 +489,24 @@ export class CognitoService extends cdk.Construct {
       userPoolId: userPool.userPoolId,
       roleArn: config.roles.sdapdevanalyst1,
       precedence: 10,
-      description: "This is Student Data Analytics Dev Role 1",
+      description: 
+      "Student Data Analytics Dev Role 1: Access to all tables/columns except any columns with PII data (Lowest level of security)",
+    });
+
+    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst2", {
+      groupName: "SdapDevAnalyst2",
+      userPoolId: userPool.userPoolId,
+      roleArn: config.roles.sdapdevanalyst2,
+      precedence: 10,
+      "description": "Student Data Analytics Dev Role 2: Access to all tables/columns except some PII columns (Mid-level of security)",
+    });
+
+    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst3", {
+      groupName: "SdapDevAnalyst3",
+      userPoolId: userPool.userPoolId,
+      roleArn: config.roles.sdapdevanalyst3,
+      precedence: 10,
+      description: "Student Data Analytics Dev Role 3: Full access to all tables/column (Highest level of security)",
     });
 
     // ========================================================================
