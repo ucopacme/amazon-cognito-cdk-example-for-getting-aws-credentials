@@ -25,7 +25,7 @@ Athena token acquisition ![architecture ](https://docs.aws.amazon.com/athena/lat
 * Cognos
 * DbVisualiser
 * Denodo
-* Excel
+* [Excel](https://github.com/ucopacme/amazon-cognito-cdk-example-for-getting-aws-credentials/blob/dev/docs/excel.md)
 * Quicksight
 * Tableau
 * Others TBD...
