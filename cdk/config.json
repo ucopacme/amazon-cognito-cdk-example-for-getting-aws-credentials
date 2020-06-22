@@ -43,6 +43,7 @@
     }
   ],
   "region": "us-west-2",
+  "domain_name": "bigdev.devops.ucop.edu",
   "roles" :
   {
       "sdapdevanalyst1": "arn:aws:iam::465872772557:role/sdapDevLevel1LocalAnalystWebRole",
