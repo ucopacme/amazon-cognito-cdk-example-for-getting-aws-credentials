@@ -12,6 +12,8 @@ import lambda = require("@aws-cdk/aws-lambda");
 import { Runtime } from "@aws-cdk/aws-lambda";
 import s3 = require("@aws-cdk/aws-s3");
 import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
+import route53 = require("@aws-cdk/aws-route53");
+import targets = require("@aws-cdk/aws-route53-targets");
 import sns = require("@aws-cdk/aws-sns");
 import subscriptions = require("@aws-cdk/aws-sns-subscriptions");
 import cdk = require("@aws-cdk/core");
@@ -40,7 +42,8 @@ export class CognitoService extends cdk.Construct {
     const nodeRuntime: Runtime = lambda.Runtime.NODEJS_12_X;
     const authorization_header_name = "Authorization";
     const stack_name = Utils.getStackName(this.node.path);
-    // ========================================================================
+    //
+    // ======================================
     // CloudFront distribution
     // ========================================================================
 
@@ -489,8 +492,8 @@ export class CognitoService extends cdk.Construct {
       userPoolId: userPool.userPoolId,
       roleArn: config.roles.sdapdevanalyst1,
       precedence: 10,
-      description: 
-      "Student Data Analytics Dev Role 1: Access to all tables/columns except any columns with PII data (Lowest level of security)",
+      description:
+        "Student Data Analytics Dev Role 1: Access to all tables/columns except any columns with PII data (Lowest level of security)",
     });
 
     new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst2", {
@@ -498,7 +501,8 @@ export class CognitoService extends cdk.Construct {
       userPoolId: userPool.userPoolId,
       roleArn: config.roles.sdapdevanalyst2,
       precedence: 10,
-      "description": "Student Data Analytics Dev Role 2: Access to all tables/columns except some PII columns (Mid-level of security)",
+      description:
+        "Student Data Analytics Dev Role 2: Access to all tables/columns except some PII columns (Mid-level of security)",
     });
 
     new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst3", {
@@ -506,7 +510,8 @@ export class CognitoService extends cdk.Construct {
       userPoolId: userPool.userPoolId,
       roleArn: config.roles.sdapdevanalyst3,
       precedence: 10,
-      description: "Student Data Analytics Dev Role 3: Full access to all tables/column (Highest level of security)",
+      description:
+        "Student Data Analytics Dev Role 3: Full access to all tables/column (Highest level of security)",
     });
 
     // ========================================================================
@@ -605,6 +610,23 @@ export class CognitoService extends cdk.Construct {
         ],
       },
     );
+
+    //    const CF_HOSTED_ZONE_ID = "Z2FDTNDATAQYW2"; // fix this with var in config.json
+    //    const MY_HOSTED_ZONE_ID = "/hostedzone/Z13JNCO63THZPQ"; // fix this with var in config.json
+    //
+    //    const zone = new route53.HostedZone.fromHostedZoneId(this,"myZone",
+    //        MY_HOSTED_ZONE_ID);
+    //
+    //    new route53.ARecord(this, "BaseRecord", {
+    //      recordName: "sdap-auth", // fix this with var in config.json
+    //      zone: zone,
+    //      target: route53.RecordTarget.fromAlias({
+    //        bind: () => ({
+    //          hostedZoneId: CF_HOSTED_ZONE_ID,
+    //          dnsName: distribution.domainName,
+    //        }),
+    //      }),
+    //    });
 
     // grant read permissions to CloudFront
     uiBucket.addToResourcePolicy(
