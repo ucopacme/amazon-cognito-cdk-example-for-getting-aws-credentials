@@ -9,6 +9,8 @@ based on the web identity role's permissions and policy.
 
 ## [Federated Access to Athena](https://docs.aws.amazon.com/athena/latest/ug/access-federation-saml.html)
 
+Athena token acquisition [architecture ](https://docs.aws.amazon.com/athena/latest/ug/images/athena-saml-based-federation.png)
+
 ## Specific Clients
 
 * [athenacli](https://github.com/ucopacme/amazon-cognito-cdk-example-for-getting-aws-credentials/blob/dev/docs/athenacli.md)
