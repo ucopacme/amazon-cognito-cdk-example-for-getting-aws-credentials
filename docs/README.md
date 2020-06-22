@@ -1,4 +1,5 @@
 # Application Credential Vending
+This is useful for providing access to resources controlled by [AWS IAM service](https://aws.amazon.com/iam/)
 
 Here's the general flow of resource creation that governs token vending for
 applcations:
