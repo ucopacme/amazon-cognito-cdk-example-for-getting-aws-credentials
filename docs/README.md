@@ -2,11 +2,14 @@
 This is useful for providing access to resources controlled by [AWS IAM service](https://aws.amazon.com/iam/)
 
 Here's the general flow of resource creation that governs token vending for
-applcations:
+applications:
 
 * Application owner creates Web identity roles.
 * Application owner grants the correct set of policies/permissions to web
-  identity roles.
+  identity roles, eg.
+
+![sdap access matrix ](images/analyst-matrix.png)
+
 * Web identity roles are exported as cloudfromation exports which can then be
 looked up by name and used to create groups (one and only one group per web
 identity role) in the authentication module.
