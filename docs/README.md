@@ -18,7 +18,9 @@ identity role) in the authentication module.
 Once a user is added to a group they will then be able to access sts tokens
 based on the web identity role's permissions and policy.
 
-## [Federated Access to Athena](https://docs.aws.amazon.com/athena/latest/ug/access-federation-saml.html)
+## Sequence of events in [Generic Federated Access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/images/saml-based-federation.diagram.png)
+
+## Special case to consider [Federated Access to Athena](https://docs.aws.amazon.com/athena/latest/ug/access-federation-saml.html)
 
 Athena token acquisition ![architecture ](https://docs.aws.amazon.com/athena/latest/ug/images/athena-saml-based-federation.png)
 
