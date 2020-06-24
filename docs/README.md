@@ -47,7 +47,6 @@ where the value of cognitoId is a specific cognito Identity, ie:
 * Data steward grants the correct set of policies/permissions to web
   identity roles, eg.
 
-![sdap access matrix ](images/analyst-matrix.png)
 
 ### Cognito User Pool groups.
 IAM Web identity roles are used in the authentication stack to create one and
@@ -67,8 +66,6 @@ based on the web identity role's permissions and policy.
 
 ### Sequence of events in generic ![SAML Federated Access to AWS resources](https://docs.aws.amazon.com/cognito/latest/developerguide/images/amazon-cognito-user-pools-saml-idp-auth-flow.png)
 
-### Athena token acquisition ![architecture ](https://docs.aws.amazon.com/athena/latest/ug/images/athena-saml-based-federation.png)
-
 ### Specific Clients
 
 * [athenacli](https://github.com/ucopacme/amazon-cognito-cdk-example-for-getting-aws-credentials/blob/dev/docs/athenacli.md)
@@ -82,7 +79,11 @@ based on the web identity role's permissions and policy.
 
 ## 9:15-9:20 Hooman - data access using sts tokens
 
-* analyst access schema, athena demo
+* analyst access schema
+
+![sdap access matrix ](images/analyst-matrix.png)
+
+* athena demo
 
 ## 9:20-9:25 Koorosh - excel access demo
 
