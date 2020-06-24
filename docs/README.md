@@ -1,4 +1,6 @@
-# Application Credential Vending aka cognito as an identity and access router
+# Application Credential Vending via cognito federated identities.
+
+English Translation: cognito as an identity and access router
 
 ![cognito as an identity and access router](https://d2908q01vomqb2.cloudfront.net/1b6453892473a467d07372d45eb05abc2031647a/2017/06/18/CognitoDiagram.png)
 
