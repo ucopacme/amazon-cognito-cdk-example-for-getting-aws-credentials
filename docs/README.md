@@ -44,11 +44,11 @@ where the value of cognitoId is a specific cognito Identity, ie:
       "cognitoId": "us-west-2:e3326ef3-911e-4911-a586-ddaf846b8f38",
 ```
 
-* Data steward grants the correct set of policies/permissions to web
-  identity roles, eg.
-
+* Data steward determine the correct set of policies/permissions to web
+  identity roles by creating explicit grants to resources.
 
 ### Cognito User Pool groups.
+
 IAM Web identity roles are used in the authentication stack to create one and
 only one Cognito User Pool group per web identity role, eg:
 
@@ -59,8 +59,7 @@ SdapDevAnalyst2
 SdapDevAnalyst3
 ```
 
-### Identity Pool Groups are then administered (by whom?!) to include the correct set of users.
-
+User pool groups are then administered (by whom?!) to include the correct set of users.
 Once a user is added to a group they will then be able to access sts tokens
 based on the web identity role's permissions and policy.
 
