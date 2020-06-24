@@ -46,8 +46,9 @@ where the value of cognitoId is a specific cognito Identity, ie:
       "cognitoId": "us-west-2:e3326ef3-911e-4911-a586-ddaf846b8f38",
 ```
 
-* Data steward determine the correct set of policies/permissions to web
-  identity roles by creating explicit grants to resources.
+### Data steward determine the correct set of policies/permissions
+
+By creating explicit grants to resources for the named web identities.
 
 ### Cognito User Pool groups.
 
