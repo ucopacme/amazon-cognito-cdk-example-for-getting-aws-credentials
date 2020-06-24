@@ -1,7 +1,7 @@
 # Application Credential Vending
 
 # 9:00-9:05 Intro - Odell
-[cognito as an identity and access router](https://d2908q01vomqb2.cloudfront.net/1b6453892473a467d07372d45eb05abc2031647a/2017/06/18/CognitoDiagram.png)
+![cognito as an identity and access router](https://d2908q01vomqb2.cloudfront.net/1b6453892473a467d07372d45eb05abc2031647a/2017/06/18/CognitoDiagram.png)
 
 One of the primary services UCOP provides to the broader UC is secure,
 auditable, reliable and affordable access to data. We're going to show one way
