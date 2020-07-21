@@ -22,10 +22,15 @@ import { Utils } from "./utils";
 import config from "../config.json";
 import "source-map-support/register";
 import { URL } from "url";
-
 export class CognitoService extends cdk.Construct {
-  constructor(scope: cdk.Stack, id: string) {
+  constructor(scope: cdk.Stack, id: string, env: string) {
     super(scope, id);
+
+    // ========================================================================
+    // get account config from env
+    // ========================================================================
+    const account = config.accounts.find((el) => el.env === env);
+    console.info("account detail " + JSON.stringify(account));
 
     // ========================================================================
     // Environment variables and constants
@@ -487,32 +492,17 @@ export class CognitoService extends cdk.Construct {
       description: "This is Test Grp 2",
     });
 
-    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst1", {
-      groupName: "SdapDevAnalyst1",
-      userPoolId: userPool.userPoolId,
-      roleArn: config.roles.sdapdevanalyst1,
-      precedence: 10,
-      description:
-        "Student Data Analytics Dev Role 1: Access to all tables/columns except any columns with PII data (Lowest level of security)",
-    });
-
-    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst2", {
-      groupName: "SdapDevAnalyst2",
-      userPoolId: userPool.userPoolId,
-      roleArn: config.roles.sdapdevanalyst2,
-      precedence: 10,
-      description:
-        "Student Data Analytics Dev Role 2: Access to all tables/columns except some PII columns (Mid-level of security)",
-    });
-
-    new cognito.CfnUserPoolGroup(this, "SdapDevAnalyst3", {
-      groupName: "SdapDevAnalyst3",
-      userPoolId: userPool.userPoolId,
-      roleArn: config.roles.sdapdevanalyst3,
-      precedence: 10,
-      description:
-        "Student Data Analytics Dev Role 3: Full access to all tables/column (Highest level of security)",
-    });
+    for (const data_access_role of account!.data_access_roles!) {
+      new cognito.CfnUserPoolGroup(this, data_access_role.label, {
+        roleArn: data_access_role.arn,
+        groupName: data_access_role.label,
+        userPoolId: userPool.userPoolId,
+        precedence: 10,
+        description: data_access_role.description,
+      });
+    }
+    /**
+     */
 
     // ========================================================================
     // Stack Outputs

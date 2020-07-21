@@ -6,6 +6,6 @@ export class Auth extends infra.BaseStack {
   constructor(scope: cdk.App, props: infra.IBaseStackProps) {
     super(scope, props);
 
-    new cognito.CognitoService(this, "Auth");
+    new cognito.CognitoService(this, "Auth", "rdms-pot");
   }
 }

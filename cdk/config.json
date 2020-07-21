@@ -34,6 +34,32 @@
       "region": "us-west-2"
     },
     {
+      "account": "623166187458",
+      "alias": "rdms",
+      "application": "rdms",
+      "child": true,
+      "env": "rdms-pot",
+      "function": "pot",
+      "region": "us-west-2",
+      "data_access_roles": [
+          {
+              "arn": "arn:aws:iam::115854119938:role/rdmsDevLevel0LocalAnalystWebRole",
+              "description": "fill in details for this",
+              "label": "rdmsDevClaimswc"
+          },
+          {
+              "arn": "arn:aws:iam::115854119938:role/rdmsDevLevel2LocalAnalystWebRole",
+              "description": "Access to all tables/columns except some PII columns (Mid-level of security)",
+              "label": "rdmsDevClaimswcdrill"
+          },
+          {
+              "arn": "arn:aws:iam::115854119938:role/rdmsDevLevel3LocalAnalystWebRole",
+              "description": "Full access to all tables/column (Highest level of security)",
+              "label": "rdmsDevClaimswcdrillpii"
+          }
+      ]
+    },
+    {
       "account": "291839108603",
       "alias": "sherlock-sdap-dev",
       "child": true,
@@ -44,11 +70,10 @@
   ],
   "region": "us-west-2",
   "domain_name": "bigdev.devops.ucop.edu",
-  "roles" :
-  {
-      "sdapdevanalyst1": "arn:aws:iam::465872772557:role/sdapDevLevel1LocalAnalystWebRole",
-      "sdapdevanalyst2": "arn:aws:iam::465872772557:role/sdapDevLevel2LocalAnalystWebRole",
-      "sdapdevanalyst3": "arn:aws:iam::465872772557:role/sdapDevLevel3LocalAnalystWebRole"
+  "roles": {
+    "sdapdevanalyst1": "arn:aws:iam::465872772557:role/sdapDevLevel1LocalAnalystWebRole",
+    "sdapdevanalyst2": "arn:aws:iam::465872772557:role/sdapDevLevel2LocalAnalystWebRole",
+    "sdapdevanalyst3": "arn:aws:iam::465872772557:role/sdapDevLevel3LocalAnalystWebRole"
   },
   "stacks": {
     "auth": {
@@ -59,9 +84,9 @@
     }
   },
   "tags": {
-    "application": "sdap",
+    "application": "scam",
     "createdBy": "eric.odell@ucop.edu",
-    "description": "Student Data Analytics Platform",
+    "description": "Secure Client Access Module",
     "environment": "",
     "group": "eat@ucop.edu",
     "source": "https://github.com/ucopacme/amazon-cognito-cdk-example-for-getting-aws-credentials"
