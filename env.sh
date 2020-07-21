@@ -8,7 +8,7 @@ export AWS_SDK_LOAD_CONFIG=1 # allows the SDK to load from config. see https://g
 ## 1. the CloudFormation stack name, e.g. "MyAppName"
 ## ====================================================================================================================
 # secure client architecture module
-export STACK_NAME="sdapDevAuth"
+export STACK_NAME="rdmsDevAuth"
 
 ## ====================================================================================================================
 ## 2. explicitly define the account you intend to deploy into
@@ -23,7 +23,7 @@ export STACK_REGION="us-west-2"
 ## ====================================================================================================================
 ## 3. Unique Domain name for Cognito must have a value
 ## ====================================================================================================================
-export COGNITO_DOMAIN_NAME=sdap-dev-auth
+export COGNITO_DOMAIN_NAME=rdms-dev-auth
 
 ## ====================================================================================================================
 ## 4. set this to use http://localhost:3000. Leave blank to use CloudFront
@@ -34,7 +34,7 @@ export APP_URL=
 ## ====================================================================================================================
 ## 5. SNS Subscription -- If left blank, a SNS Topic will still be created but without a Subscription
 ## ====================================================================================================================
-export NEW_USER_SNS_SUBSCRIPTION="eric.goodman@ucop.edu"
+export NEW_USER_SNS_SUBSCRIPTION="hooman.pejman@ucop.edu"
 
 ## ====================================================================================================================
 ## 6. New User Info SETTINGS** -- used in Lambda**

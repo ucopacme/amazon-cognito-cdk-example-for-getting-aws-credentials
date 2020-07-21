@@ -126,7 +126,7 @@ export class CognitoService extends cdk.Construct {
       allowedOAuthFlowsUserPoolClient: true,
       allowedOAuthScopes: ["phone", "email", "openid", "profile"],
       callbackUrLs: [appUrl],
-      clientName: "sdap-dev-auth-saml",
+      clientName: "rdms-dev-auth-saml",
       explicitAuthFlows: [],
       generateSecret: false,
       logoutUrLs: [appUrl],

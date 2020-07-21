@@ -1,15 +1,6 @@
 {
   "accounts": [
     {
-      "account": "108299160105",
-      "alias": "bigdata",
-      "branch": "master",
-      "child": true,
-      "env": "prod",
-      "function": "data",
-      "region": "us-west-2"
-    },
-    {
       "account": "465872772557",
       "alias": "bigdev",
       "child": true,
@@ -18,23 +9,7 @@
       "region": "us-west-2"
     },
     {
-      "account": "066535528908",
-      "alias": "bigprod",
-      "child": true,
-      "env": "",
-      "function": "",
-      "region": "us-west-2"
-    },
-    {
-      "account": "623166187458",
-      "alias": "eatpoc",
-      "child": true,
-      "env": "poc",
-      "function": "poc",
-      "region": "us-west-2"
-    },
-    {
-      "account": "623166187458",
+      "account": "115854119938",
       "alias": "rdms",
       "application": "rdms",
       "child": true,
