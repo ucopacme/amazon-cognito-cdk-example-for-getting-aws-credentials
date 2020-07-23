@@ -8,7 +8,7 @@ export AWS_SDK_LOAD_CONFIG=1 # allows the SDK to load from config. see https://g
 ## 1. the CloudFormation stack name, e.g. "MyAppName"
 ## ====================================================================================================================
 # secure client architecture module
-export STACK_NAME="rdmsDevAuth"
+export STACK_NAME="scamRdms-potAuth"
 
 ## ====================================================================================================================
 ## 2. explicitly define the account you intend to deploy into
