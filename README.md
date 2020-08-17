@@ -9,6 +9,29 @@ This proof of concept (POC) resulted from a need to provide end users access to 
 
 This POC uses [AWS CDK](https://github.com/aws/aws-cdk) for the backend and infrastructure, and [React](https://reactjs.org/) for the frontend. 
 
+## Enhanced (Simplified) Authflow
+
+There are two basic steps:
+
+* GetId
+
+* GetCredentialsForIdentity
+
+Here's a cartoon showing this authentication flow:
+
+![authflow](docs/images/enhanced-flow.png)
+
+In english this might sound something like:
+
+1. App sends user name and password to identity provider.
+2. Identity provider returns a valid token to the application on successful user authenticated.
+3. App forwards token to the associated cognito identity pool.
+4. Cognito validates the token with the Identity Provider.
+5. If the token is valid, Amazon Cognito Federated Identities contacts STS to
+retrieve temporary access credentials (access key, secret key, and session
+token) based on the authenticated IAM role associated with the identity pool.
+6. App contacts the specific AWS service using the temporary credentials.
+
 ## Modules
 This POC contains the following modules within these sub-folders:
 ### /cdk
